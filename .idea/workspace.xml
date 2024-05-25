@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="456543c0-f09f-4626-b650-c7ed1560fefe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Archive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Archive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileEntryIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/FileEntryIterator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/OtherFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/OtherFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Website.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/data/Website.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/ser/ExcelEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs350/ser/ExcelEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/portfolio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/pricing.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/pricing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-website/basic-free-html5-template-for-multi-purpose/services.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +80,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2gt0GCU6MKMoosigzrTP8XOKqdq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
