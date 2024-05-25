@@ -1,4 +1,4 @@
-package edu.odu.cs350.data;
+package edu.odu.cs350.ser;
 
 public class ExcelEntry
 {
@@ -18,5 +18,33 @@ public class ExcelEntry
         this.numLinksIntraPage = numLinksIntraPage;
         this.numLinksInternal = numLinksInternal;
         this.numLinksExternal = numLinksExternal;
+    }
+
+    public String getPageName() {
+        return pageName;
+    }
+
+    public int getNumImages() {
+        return numImages;
+    }
+
+    public int getNumStylesheets() {
+        return numStylesheets;
+    }
+
+    public int getNumScripts() {
+        return numScripts;
+    }
+
+    public int getNumLinksIntraPage() {
+        return numLinksIntraPage;
+    }
+
+    public int getNumLinksInternal() {
+        return numLinksInternal;
+    }
+
+    public int getNumLinksExternal() {
+        return numLinksExternal;
     }
 }
