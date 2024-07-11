@@ -88,6 +88,7 @@ public class Website {
         return buffer.toString();
     }
 
+    // Move to excel report writer
     public HSSFWorkbook getExcelReport() {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet();
@@ -414,7 +415,7 @@ public class Website {
         }
     }
 
-    public boolean registerLinkToImage(String imageURI, String pageURI) throws IOException {
+    public boolean registerLinkToImage(String imageURI, String pageURI) {
         if (imageRegistry.containsKey(imageURI)) {
             imageRegistry.get(imageURI).addLink(pageURI);
             return false;
@@ -426,7 +427,7 @@ public class Website {
         }
     }
 
-    public boolean registerLinkToExternalImage(String imageURI, String pageURI) throws IOException {
+    public boolean registerLinkToExternalImage(String imageURI, String pageURI) {
         if (externalImageRegistry.containsKey(imageURI)) {
             externalImageRegistry.get(imageURI).add(pageURI);
             return false;
