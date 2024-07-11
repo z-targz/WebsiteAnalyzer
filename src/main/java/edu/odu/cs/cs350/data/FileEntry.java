@@ -110,6 +110,10 @@ public class FileEntry implements Iterable<FileEntry>
 
     private final String mimetype;
 
+    public Path getFilePath() {
+        return filePath;
+    }
+
     public FileEntry(Path p, Website parent) throws IOException {
         this(p, new HashMap<>(), parent, Files.isDirectory(p));
     }
@@ -135,13 +139,16 @@ public class FileEntry implements Iterable<FileEntry>
         return (HashMap<String, FileEntry>) children.clone();
     }
 
+
     public String getMimeType() {
         return mimetype;
     }
 
+    //Test ready
     public String getURI() throws IOException {
         return filePath.toFile().getCanonicalFile().toURI().toString();
     }
+
 
     //adapted from https://stackoverflow.com/a/8948691
     protected void print(StringBuilder buffer, String prefix, String childrenPrefix) {
@@ -163,55 +170,7 @@ public class FileEntry implements Iterable<FileEntry>
         }
     }
 
-    public Page parsePage() throws IOException {
-        File theFile = filePath.toFile();
 
-        final String URI = theFile.getCanonicalFile().toURI().toString();
-
-        Page out = new Page(URI);
-
-        Document doc = Jsoup.parse(theFile, "UTF-8", URI);
-        Elements links = doc.select("a[href]");
-        Elements media = doc.select("[src]");
-        Elements imports = doc.select("link[href]");
-
-        for (Element the_import : imports) {
-            if(the_import.attr("rel").equals("stylesheet")) {
-                out.addStyleSheet(the_import.attr("abs:href"));
-            }
-        }
-
-        for (Element src : media) {
-            if (src.nameIs("img")) {
-                String src_uri = src.attr("abs:src");
-                if(src_uri.startsWith(Main.getRootURI())) {
-                    out.addInternalImage(src.attr("abs:src"));
-                    parent.registerLinkToImage(src_uri, URI);
-                } else {
-                    out.addExternalImage(src.attr("abs:src"));
-                    parent.registerLinkToExternalImage(src_uri, URI);
-                }
-            }
-            else if (src.tagName().equals("script")) {
-                out.addScript(src.attr("abs:src"));
-            }
-        }
-
-        for (Element link : links) {
-            String link_uri = link.attr("abs:href");
-            if(link_uri.startsWith(Main.getRootURI())) {
-                if(link_uri.startsWith(URI) && !link_uri.equals(URI)) {
-                    out.addIntraPageLink(link_uri);
-                } else {
-                    out.addInternalLink(link_uri);
-                }
-            } else {
-                out.addExternalLink(link_uri);
-            }
-        }
-
-        return out;
-    }
 }
 
 

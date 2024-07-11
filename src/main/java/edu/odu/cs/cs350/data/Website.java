@@ -1,36 +1,33 @@
 package edu.odu.cs.cs350.data;
 
 import edu.odu.cs.cs350.Main;
-import edu.odu.cs.cs350.ser.ExcelEntry;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.ss.usermodel.CellType;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class Website {
     private final FileEntry rootNode;
-    private HashMap<String, String> pageEntries;
-    private HashMap<String, Image> imageRegistry;
-    private HashMap<String, Set<String>> externalImageRegistry;
-    private HashMap<String, String> imageEntries;
-    private HashMap<String, String> externalImageEntries;
-    private HashMap<String, String> archiveEntries;
-    private HashMap<String, String> videoEntries;
-    private HashMap<String, String> audioEntries;
-    private HashMap<String, String> otherEntries;
-    private HashMap<String, Page> pageRegistry;
-    private HashMap<String, Long> pageSizeRegistry;
 
-    public Website(Path root) {
+    private final String rootURI;
+    private Map<String, String> pageEntries;
+    private Map<String, Image> imageRegistry;
+    private Map<String, Set<String>> externalImageRegistry;
+    private Map<String, String> imageEntries;
+    private Map<String, String> externalImageEntries;
+    private Map<String, String> archiveEntries;
+    private Map<String, String> videoEntries;
+    private Map<String, String> audioEntries;
+    private Map<String, String> otherEntries;
+    private Map<String, Page> pageRegistry;
+
+    public Website(Path root) throws IOException {
+        rootURI = root.toFile().getCanonicalFile().toURI().toString();
         rootNode = generateRecursive(root);
         pageEntries = new HashMap<>();
         imageRegistry = new HashMap<>();
@@ -42,9 +39,17 @@ public class Website {
         audioEntries = new HashMap<>();
         otherEntries = new HashMap<>();
         pageRegistry = new HashMap<>();
-        pageSizeRegistry = new HashMap<>();
     }
 
+    public Map<String, Page> getPageRegistry() {
+        return pageRegistry;
+    }
+
+    public Map<String, Image> getImageRegistry() {
+        return imageRegistry;
+    }
+
+    //Test ready
     public FileEntry generateRecursive(Path path) {
         try {
             HashMap<String, FileEntry> children = new HashMap<>();
@@ -66,105 +71,10 @@ public class Website {
         }
     }
 
-    public void determinePageSizes() {
-        pageRegistry.keySet().forEach(x->{
-            Page p = pageRegistry.get(x);
-            long sizeBytes =
-                p.getInternalImages()
-                    .stream()
-                    .map(uri->imageRegistry.get(uri).getSizeBytes())
-                    .mapToLong(Long::longValue)
-                    .sum();
-            pageSizeRegistry.put(x, sizeBytes);
-        });
-    }
 
-    public String getTxtReport() {
-        determinePageSizes();
-        StringBuilder buffer = new StringBuilder(1000);
-        pageSizeRegistry.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\t%s\n", FileBase.printFileSize(pageSizeRegistry.get(x)), trimRootURI(x)));
-        });
-        return buffer.toString();
-    }
 
     // Move to excel report writer
-    public HSSFWorkbook getExcelReport() {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet();
 
-        HSSFRow firstRow = sheet.createRow(0);
-        HSSFCell column0 = firstRow.createCell(0);
-        column0.setCellType(CellType.STRING);
-        column0.setCellValue("Page Name");
-
-        HSSFCell column1 = firstRow.createCell(1);
-        column1.setCellType(CellType.STRING);
-        column1.setCellValue("# of Images");
-
-        HSSFCell column2 = firstRow.createCell(2);
-        column2.setCellType(CellType.STRING);
-        column2.setCellValue("# of Stylesheets");
-
-        HSSFCell column3 = firstRow.createCell(3);
-        column3.setCellType(CellType.STRING);
-        column3.setCellValue("# of Scripts");
-
-        HSSFCell column4 = firstRow.createCell(4);
-        column4.setCellType(CellType.STRING);
-        column4.setCellValue("# of Intra-Page Links");
-
-        HSSFCell column5 = firstRow.createCell(5);
-        column5.setCellType(CellType.STRING);
-        column5.setCellValue("# of Internal Links");
-
-        HSSFCell column6 = firstRow.createCell(6);
-        column6.setCellType(CellType.STRING);
-        column6.setCellValue("# of External Links");
-
-        AtomicInteger i = new AtomicInteger();
-        i.set(1);
-        pageRegistry.keySet().stream().sorted().forEach(x->{
-            ExcelEntry entry = pageRegistry.get(x).getExcelEntry();
-            HSSFRow row = sheet.createRow(i.get());
-
-
-            HSSFCell cell0 = row.createCell(0);
-            cell0.setCellType(CellType.NUMERIC);
-            cell0.setCellValue(entry.getPageName());
-
-            HSSFCell cell1 = row.createCell(1);
-            cell1.setCellType(CellType.NUMERIC);
-            cell1.setCellValue(entry.getNumImages());
-
-            HSSFCell cell2 = row.createCell(2);
-            cell2.setCellType(CellType.NUMERIC);
-            cell2.setCellValue(entry.getNumStylesheets());
-
-            HSSFCell cell3 = row.createCell(3);
-            cell3.setCellType(CellType.NUMERIC);
-            cell3.setCellValue(entry.getNumScripts());
-
-            HSSFCell cell4 = row.createCell(4);
-            cell4.setCellType(CellType.NUMERIC);
-            cell4.setCellValue(entry.getNumLinksIntraPage());
-
-            HSSFCell cell5 = row.createCell(5);
-            cell5.setCellType(CellType.NUMERIC);
-            cell5.setCellValue(entry.getNumLinksInternal());
-
-            HSSFCell cell6 = row.createCell(6);
-            cell6.setCellType(CellType.NUMERIC);
-            cell6.setCellValue(entry.getNumLinksExternal());
-
-            i.incrementAndGet();
-        });
-        for(int j=0;j<7;++j) {
-            sheet.autoSizeColumn(j);
-        }
-
-        return workbook;
-    }
 
     private enum FileType {
         PAGE,
@@ -236,7 +146,7 @@ public class Website {
             StringBuilder buffer = new StringBuilder(1000);
             buffer.append(String.format("  Embed (%d):\n", externalImageRegistry.get(externalURI).size()));
             externalImageRegistry.get(externalURI).forEach(l->{
-                buffer.append(String.format("\t%s\n", trimRootURI(l)));
+                buffer.append(String.format("\t%s\n", trimRootURI(l, rootURI)));
             });
             externalImageEntries.put(externalURI, buffer.toString());
         }
@@ -246,7 +156,7 @@ public class Website {
         StringBuilder buffer = new StringBuilder(1000);
 
         otherEntries.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\n", trimRootURI(x)));
+            buffer.append(String.format("%s\n", trimRootURI(x, rootURI)));
             buffer.append(otherEntries.get(x));
         });
         buffer.append("\n");
@@ -264,7 +174,7 @@ public class Website {
         StringBuilder buffer = new StringBuilder(1000);
 
         audioEntries.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\n", trimRootURI(x)));
+            buffer.append(String.format("%s\n", trimRootURI(x, rootURI)));
             buffer.append(audioEntries.get(x));
         });
         buffer.append("\n");
@@ -282,7 +192,7 @@ public class Website {
         StringBuilder buffer = new StringBuilder(1000);
 
         videoEntries.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\n", trimRootURI(x)));
+            buffer.append(String.format("%s\n", trimRootURI(x, rootURI)));
             buffer.append(videoEntries.get(x));
         });
         buffer.append("\n");
@@ -300,7 +210,7 @@ public class Website {
         StringBuilder buffer = new StringBuilder(1000);
 
         archiveEntries.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\n", trimRootURI(x)));
+            buffer.append(String.format("%s\n", trimRootURI(x, rootURI)));
             buffer.append(archiveEntries.get(x));
         });
         buffer.append("\n");
@@ -337,12 +247,12 @@ public class Website {
         if(imageRegistry.containsKey(URI)) {
             buffer.append(String.format("  Embed (%d):\n", imageRegistry.get(URI).numPagesWithMe()));
             imageRegistry.get(URI).getPagesWithMe().forEach(l->{
-                buffer.append(String.format("\t%s\n", trimRootURI(l)));
+                buffer.append(String.format("\t%s\n", trimRootURI(l, rootURI)));
             });
         } else {
             buffer.append("  Embed (0)\n");
         }
-        imageEntries.put(trimRootURI(URI), buffer.toString());
+        imageEntries.put(trimRootURI(URI, rootURI), buffer.toString());
     }
 
 
@@ -362,55 +272,54 @@ public class Website {
     public void generatePageEntries() throws IOException {
         for (FileEntry child : rootNode) {
             if (matchMimeType(child.getMimeType(), FileType.PAGE)) {
-                Page page = child.parsePage();
+                Page page = new Page(child.getFilePath(), this);
                 pageRegistry.put(page.getLabel(), page);
-
 
                 StringBuilder buffer = new StringBuilder(1000);
 
                 buffer.append(String.format("  Stylesheets (%d):\n", page.getStyleSheets().size()));
                 page.getStyleSheets().stream().sorted().forEach(s->{
-                    buffer.append(String.format("\tcss: %s\n", trimRootURI(s)));
+                    buffer.append(String.format("\tcss: %s\n", trimRootURI(s, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  Scripts (%d):\n", page.getScripts().size()));
                 page.getScripts().stream().sorted().forEach(s->{
-                    buffer.append(String.format("\tscript: %s\n", trimRootURI(s)));
+                    buffer.append(String.format("\tscript: %s\n", trimRootURI(s, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  Internal Images (%d):\n", page.getInternalImages().size()));
                 page.getInternalImages().stream().sorted().forEach(i->{
-                    buffer.append(String.format("\timg: %s\n", trimRootURI(i)));
+                    buffer.append(String.format("\timg: %s\n", trimRootURI(i, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  External Images (%d):\n", page.getExternalImages().size()));
                 page.getExternalImages().stream().sorted().forEach(i->{
-                    buffer.append(String.format("\timg: %s\n", trimRootURI(i)));
+                    buffer.append(String.format("\timg: %s\n", trimRootURI(i, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  Intra-Page Links (%d):\n", page.getIntraPageLinks().size()));
                 page.getIntraPageLinks().stream().sorted().forEach(l->{
-                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l)));
+                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  Internal Links (%d):\n", page.getInternalLinks().size()));
                 page.getInternalLinks().stream().sorted().forEach(l->{
-                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l)));
+                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l, rootURI)));
                 });
                 buffer.append("\n");
 
                 buffer.append(String.format("  External Links (%d):\n", page.getExternalLinks().size()));
                 page.getExternalLinks().stream().sorted().forEach(l->{
-                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l)));
+                    buffer.append(String.format("\tlink: %s\n", trimRootURI(l, rootURI)));
                 });
                 buffer.append("\n");
 
-                pageEntries.put(trimRootURI(page.getLabel()), buffer.toString());
+                pageEntries.put(trimRootURI(page.getLabel(), rootURI), buffer.toString());
             }
         }
     }
@@ -439,18 +348,24 @@ public class Website {
         }
     }
 
-    public static String trimRootURI(String URI) {
-        if(URI.startsWith(Main.getRootURI())) {
-            return URI.substring(Main.getRootURI().length());
+    //Test ready
+    public static String trimRootURI(String URI, String rootURI) {
+        if(URI.startsWith(rootURI)) {
+            return URI.substring(rootURI.length());
         }
         return URI;
     }
 
+    //Test ready
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder(1000);
         rootNode.print(buffer, "", "");
         return buffer.toString();
+    }
+
+    public String getRootURI() {
+        return rootURI;
     }
 }
 

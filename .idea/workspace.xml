@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="456543c0-f09f-4626-b650-c7ed1560fefe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ExcelReportWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/JSONReportWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/TxtReportWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntryIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntryIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Page.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Website.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Website.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
