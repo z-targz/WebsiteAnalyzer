@@ -1,4 +1,4 @@
-package edu.odu.cs350.ser;
+package edu.odu.cs.cs350.ser;
 
 public class ExcelEntry
 {

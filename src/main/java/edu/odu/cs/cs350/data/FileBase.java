@@ -1,4 +1,4 @@
-package edu.odu.cs350.data;
+package edu.odu.cs.cs350.data;
 
 import java.io.File;
 import java.io.IOException;

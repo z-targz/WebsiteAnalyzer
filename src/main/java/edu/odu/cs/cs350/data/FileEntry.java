@@ -1,6 +1,6 @@
-package edu.odu.cs350.data;
+package edu.odu.cs.cs350.data;
 
-import edu.odu.cs350.Main;
+import edu.odu.cs.cs350.Main;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

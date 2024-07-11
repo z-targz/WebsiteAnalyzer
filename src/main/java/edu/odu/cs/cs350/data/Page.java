@@ -1,6 +1,6 @@
-package edu.odu.cs350.data;
+package edu.odu.cs.cs350.data;
 
-import edu.odu.cs350.ser.ExcelEntry;
+import edu.odu.cs.cs350.ser.ExcelEntry;
 
 import java.util.HashSet;
 import java.util.Set;

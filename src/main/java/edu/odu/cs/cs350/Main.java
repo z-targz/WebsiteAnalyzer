@@ -1,6 +1,6 @@
-package edu.odu.cs350;
+package edu.odu.cs.cs350;
 
-import edu.odu.cs350.data.Website;
+import edu.odu.cs.cs350.data.Website;
 
 import java.io.BufferedWriter;
 import java.io.File;
