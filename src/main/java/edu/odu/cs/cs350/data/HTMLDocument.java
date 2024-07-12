@@ -1,6 +1,6 @@
 package edu.odu.cs.cs350.data;
 
-import edu.odu.cs.cs350.Main;
+import edu.odu.cs.cs350.Util;
 import edu.odu.cs.cs350.ser.ExcelEntry;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,9 +13,22 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Page
+public class HTMLDocument
 {
-    public Page(Path filePath, Website parent) throws IOException {
+
+
+    private String label;
+    private String rootURI;
+    private Set<String> intraPageLinks;
+    private Set<String> internalLinks;
+    private Set<String> externalLinks;
+    private Set<String> internalImages;
+    private Set<String> externalImages;
+    private Set<String> styleSheets;
+    private Set<String> scripts;
+
+
+    public HTMLDocument(Path filePath, Website parent) throws IOException {
         File theFile = filePath.toFile();
 
         this.rootURI = parent.getRootURI();
@@ -65,7 +78,7 @@ public class Page
 
         for (Element link : links) {
             String link_uri = link.attr("abs:href");
-            if(link_uri.startsWith(rootURI)) {
+            if(link_uri.startsWith(rootURI) || parent.getURLs().stream().anyMatch(s->link_uri.startsWith(s))) {
                 if(link_uri.startsWith(label) && !link_uri.equals(label)) {
                     this.intraPageLinks.add(link_uri);
                 } else {
@@ -77,23 +90,13 @@ public class Page
         }
     }
 
-    private String label;
-    private Set<String> intraPageLinks;
-    private Set<String> internalLinks;
-    private Set<String> externalLinks;
-    private Set<String> internalImages;
-    private Set<String> externalImages;
-    private Set<String> styleSheets;
-    private Set<String> scripts;
-
-    private String rootURI;
     public String getLabel() {
         return label;
     }
 
     public ExcelEntry getExcelEntry() {
         return new ExcelEntry(
-            Website.trimRootURI(label, rootURI),
+            Util.trimRootURI(label, rootURI),
             internalImages.size() + externalImages.size(),
             styleSheets.size(),
             scripts.size(),

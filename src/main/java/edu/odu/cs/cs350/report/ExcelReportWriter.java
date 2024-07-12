@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350.report;
 
-import edu.odu.cs.cs350.data.Page;
 import edu.odu.cs.cs350.data.Website;
 import edu.odu.cs.cs350.ser.ExcelEntry;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -11,11 +10,13 @@ import org.apache.poi.ss.usermodel.CellType;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ExcelReportWriter {
-    public static HSSFWorkbook getExcelReport(Map<String, Page> pageRegistry) {
+public class ExcelReportWriter extends ReportWriter {
+    public ExcelReportWriter(Website website) {
+        super(website);
+    }
+    public HSSFWorkbook getExcelReport() {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet();
 
@@ -50,8 +51,8 @@ public class ExcelReportWriter {
 
         AtomicInteger i = new AtomicInteger();
         i.set(1);
-        pageRegistry.keySet().stream().sorted().forEach(x->{
-            ExcelEntry entry = pageRegistry.get(x).getExcelEntry();
+        website.getDocumentRegistry().keySet().stream().sorted().forEach(x->{
+            ExcelEntry entry = website.getDocumentRegistry().get(x).getExcelEntry();
             HSSFRow row = sheet.createRow(i.get());
 
 
@@ -92,9 +93,10 @@ public class ExcelReportWriter {
         return workbook;
     }
 
-    public static void writeExcelReport(String fileName, Website website) throws IOException {
+    @Override
+    public void write(String fileName) throws IOException {
         FileOutputStream excel = new FileOutputStream(fileName);
-        ExcelReportWriter.getExcelReport(website.getPageRegistry()).write(excel);
+        getExcelReport().write(excel);
         excel.close();
     }
 }

@@ -25,7 +25,7 @@ test {
 jar {
     manifest {
         attributes(
-            'Main-Class': 'edu.odu.cs350.Main'
+            'Main-Class': 'edu.odu.cs.cs350.Main'
         )
     }
     from {

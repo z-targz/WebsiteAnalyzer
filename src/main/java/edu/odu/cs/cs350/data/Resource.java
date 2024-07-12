@@ -1,15 +1,14 @@
 package edu.odu.cs.cs350.data;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 
-public class FileBase {
+public class Resource {
 
     private long mySize;
     private String myURI;
 
-    protected FileBase(String uri) {
+    protected Resource(String uri) {
         myURI = uri;
         mySize = new File(URI.create(myURI)).length();
     }

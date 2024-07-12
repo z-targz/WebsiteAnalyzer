@@ -3,7 +3,7 @@ package edu.odu.cs.cs350.data;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Image extends FileBase {
+public class Image extends Resource {
     private Set<String> pagesWithMe;
 
     public Image(String uri) {

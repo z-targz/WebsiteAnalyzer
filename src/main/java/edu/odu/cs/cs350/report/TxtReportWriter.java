@@ -1,8 +1,8 @@
 package edu.odu.cs.cs350.report;
 
-import edu.odu.cs.cs350.data.FileBase;
-import edu.odu.cs.cs350.data.Image;
-import edu.odu.cs.cs350.data.Page;
+import edu.odu.cs.cs350.Util;
+import edu.odu.cs.cs350.data.Resource;
+import edu.odu.cs.cs350.data.HTMLDocument;
 import edu.odu.cs.cs350.data.Website;
 
 import java.io.BufferedWriter;
@@ -12,16 +12,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TxtReportWriter {
+public class TxtReportWriter extends ReportWriter {
+    public TxtReportWriter(Website website) {
+        super(website);
+    }
 
-    public static Map<String, Long> determinePageSizes(Map<String, Page> pageRegistry, Map<String, Image> imageRegistry) {
+    public Map<String, Long> determinePageSizes() {
         Map<String, Long> pageSizeRegistry = new HashMap<>();
-        pageRegistry.keySet().forEach(x->{
-            Page p = pageRegistry.get(x);
+        website.getDocumentRegistry().keySet().forEach(x->{
+            HTMLDocument p = website.getDocumentRegistry().get(x);
             long sizeBytes =
                 p.getInternalImages()
                     .stream()
-                    .map(uri->imageRegistry.get(uri).getSizeBytes())
+                    .map(uri->website.getImageRegistry().get(uri).getSizeBytes())
                     .mapToLong(Long::longValue)
                     .sum();
             pageSizeRegistry.put(x, sizeBytes);
@@ -29,20 +32,21 @@ public class TxtReportWriter {
         return pageSizeRegistry;
     }
 
-    public static String getTxtReport(Map<String, Page> pageRegistry, Map<String, Image> imageRegistry, String rootURI) {
-        Map<String, Long> pageSizeRegistry = determinePageSizes(pageRegistry, imageRegistry);
+    public String getTxtReport() {
+        Map<String, Long> pageSizeRegistry = determinePageSizes();
         StringBuilder buffer = new StringBuilder(1000);
         pageSizeRegistry.keySet().stream().sorted().forEach(x->{
-            buffer.append(String.format("%s\t%s\n", FileBase.printFileSize(pageSizeRegistry.get(x)), Website.trimRootURI(x, rootURI)));
+            buffer.append(String.format("%s\t%s\n", Resource.printFileSize(pageSizeRegistry.get(x)), Util.trimRootURI(x, website.getRootURI())));
         });
         return buffer.toString();
     }
 
-    public static void writeTxtReport(String fileName, Website website) throws IOException {
+    @Override
+    public void write(String fileName) throws IOException {
         File report_txt = new File(fileName);
         BufferedWriter writer_txt = new BufferedWriter(new FileWriter(report_txt));
 
-        writer_txt.write(TxtReportWriter.getTxtReport(website.getPageRegistry(), website.getImageRegistry(), website.getRootURI()));
+        writer_txt.write(getTxtReport());
 
         writer_txt.close();
     }

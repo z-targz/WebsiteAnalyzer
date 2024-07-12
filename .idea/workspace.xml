@@ -5,14 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="456543c0-f09f-4626-b650-c7ed1560fefe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ExcelReportWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/JSONReportWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/TxtReportWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/WebsiteBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ReportManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ReportWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Archive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Archive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Resource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/FileEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/OtherFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/OtherFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/HTMLDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Video.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Website.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/data/Website.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ExcelReportWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/ExcelReportWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/JSONReportWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/JSONReportWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/TxtReportWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/odu/cs/cs350/report/TxtReportWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +136,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test-website" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="edu.odu.cs.cs350.Util" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="edu.odu.cs350.data" />

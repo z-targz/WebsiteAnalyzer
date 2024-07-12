@@ -1,13 +1,6 @@
 package edu.odu.cs.cs350.data;
 
-import edu.odu.cs.cs350.Main;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,6 +8,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+
+/*
+    A tree structure representing a directory tree with utility functions
+ */
 public class FileEntry implements Iterable<FileEntry>
 {
     private class FileEntryIterator implements Iterator<FileEntry>
@@ -106,28 +103,26 @@ public class FileEntry implements Iterable<FileEntry>
     private final String label;
     private final Path filePath;
 
-    private final Website parent;
+
 
     private final String mimetype;
 
-    public Path getFilePath() {
-        return filePath;
+
+
+    public FileEntry(Path p) throws IOException {
+        this(p, new HashMap<>(), Files.isDirectory(p));
     }
 
-    public FileEntry(Path p, Website parent) throws IOException {
-        this(p, new HashMap<>(), parent, Files.isDirectory(p));
+    public FileEntry(Path p, HashMap<String, FileEntry> children) throws IOException {
+        this(p, children, true);
     }
 
-    public FileEntry(Path p, HashMap<String, FileEntry> children, Website parent) throws IOException {
-        this(p, children, parent, true);
-    }
-
-    private FileEntry(Path p, HashMap<String, FileEntry> children, Website parent, boolean is_directory) throws IOException {
+    private FileEntry(Path p, HashMap<String, FileEntry> children, boolean is_directory) throws IOException {
         this.is_directory = is_directory;
         this.label = p.getFileName().toString();
         this.children = children;
         this.filePath = p;
-        this.parent = parent;
+
         this.mimetype = Files.probeContentType(filePath);
     }
 
@@ -139,7 +134,11 @@ public class FileEntry implements Iterable<FileEntry>
         return (HashMap<String, FileEntry>) children.clone();
     }
 
+    public Path getFilePath() {
+        return filePath;
+    }
 
+    //Test Ready
     public String getMimeType() {
         return mimetype;
     }
@@ -169,8 +168,6 @@ public class FileEntry implements Iterable<FileEntry>
             }
         }
     }
-
-
 }
 
 
