@@ -1,6 +1,6 @@
 package edu.odu.cs.cs350.report;
 
-import edu.odu.cs.cs350.data.Website;
+import edu.odu.cs.cs350.Website;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

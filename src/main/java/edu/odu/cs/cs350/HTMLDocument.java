@@ -1,7 +1,6 @@
-package edu.odu.cs.cs350.data;
+package edu.odu.cs.cs350;
 
-import edu.odu.cs.cs350.Util;
-import edu.odu.cs.cs350.ser.ExcelEntry;
+import edu.odu.cs.cs350.report.ExcelEntry;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

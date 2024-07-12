@@ -1,4 +1,6 @@
-package edu.odu.cs.cs350.data;
+package edu.odu.cs.cs350;
+
+import edu.odu.cs.cs350.data.Image;
 
 import java.io.IOException;
 import java.nio.file.Path;

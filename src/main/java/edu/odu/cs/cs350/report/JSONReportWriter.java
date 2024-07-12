@@ -1,6 +1,9 @@
 package edu.odu.cs.cs350.report;
 
+import edu.odu.cs.cs350.FileEntry;
+import edu.odu.cs.cs350.HTMLDocument;
 import edu.odu.cs.cs350.Util;
+import edu.odu.cs.cs350.Website;
 import edu.odu.cs.cs350.data.*;
 
 import java.io.BufferedWriter;

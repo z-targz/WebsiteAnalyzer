@@ -1,11 +1,10 @@
-package edu.odu.cs.cs350.data;
+package edu.odu.cs.cs350;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class WebsiteBuilder {

@@ -1,7 +1,6 @@
 package edu.odu.cs.cs350.report;
 
-import edu.odu.cs.cs350.data.Website;
-import edu.odu.cs.cs350.ser.ExcelEntry;
+import edu.odu.cs.cs350.Website;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;

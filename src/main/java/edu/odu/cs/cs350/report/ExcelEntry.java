@@ -1,4 +1,4 @@
-package edu.odu.cs.cs350.ser;
+package edu.odu.cs.cs350.report;
 
 public class ExcelEntry
 {
@@ -10,7 +10,9 @@ public class ExcelEntry
     private int numLinksInternal;
     private int numLinksExternal;
 
-    public ExcelEntry(String pageName, int numImages, int numStylesheets, int numScripts, int numLinksIntraPage, int numLinksInternal, int numLinksExternal) {
+    public ExcelEntry(String pageName, int numImages, int numStylesheets, int numScripts, int numLinksIntraPage,
+        int numLinksInternal, int numLinksExternal)
+    {
         this.pageName = pageName;
         this.numImages = numImages;
         this.numStylesheets = numStylesheets;
